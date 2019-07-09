@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,21 +13,50 @@
     <link rel="stylesheet" type="text/css" href="./assets/ali.css">
 
     <!--Fonts-->
-   
+
     <!-- link to jquery -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
 </head>
+
 <body>
     <header class="header">
         <h1 id="title">Ali Wong | The Trivia Game</h1>
     </header>
 
-    <section class="gamebox triviabox">
-        <div class="individQuest"></div>
+    <section class="instruct">
+        <h1 id="instruction">You have 30 seconds to answer each questions. Each question is 10 points. If you answer the questions correctly within 15 seconds, you get an additional amount of points!</h1>
     </section>
-    
+
+    <section class="gamebox triviabox container-fluid">
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="individQuest col=8"></div>
+            <div class="col-2"></div>
+        </div>
+
+    </section>
+
+    <section class="scoring container-fluid">
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-2">
+                <h2 class="score">Remaining Questions: <span id="remainingQ">10</span></h2>
+            </div>
+            <div class="col-2">
+                <h2 class="score">Questions Correct: <span id="correct">0</span></h2>
+            </div>
+            <div class="col-2">
+                    <h2 class="score">Speed Points: <span id="speedPoints">0</span></h2>
+            </div>
+            <div class="col-2">
+                    <h2 class="score">Total Points: <span id="totalPoints">0</span></h2>
+            </div>
+            <div class="col-2"></div>
+        </div>
+    </section>
     <script type="text/javascript" src="assets/ali.js"></script>
 </body>
+
 </html>
