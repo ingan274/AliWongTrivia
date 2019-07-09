@@ -13,6 +13,7 @@
     <link rel="stylesheet" type="text/css" href="./assets/ali.css">
 
     <!--Fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Oswald:400,500,700&display=swap" rel="stylesheet">
 
     <!-- link to jquery -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
@@ -22,20 +23,49 @@
 
 <body>
     <header class="header">
-        <h1 id="title">Ali Wong | The Trivia Game</h1>
+        <h1 id="title">Ali Wong <span id="titleSlim">| The Trivia Game</span></h1>
     </header>
 
-    <section class="instruct">
-        <h1 id="instruction">You have 30 seconds to answer each questions. Each question is 10 points. If you answer the questions correctly within 15 seconds, you get an additional amount of points!</h1>
+    <section class="instruct container-fluid">
+        <div class="row">
+            <div class="col-2"></div>
+            <h1 class="col-5" id="instruction">You have 30 seconds to answer each questions. Each question is 10 points.
+                If you answer
+                the
+                questions correctly within 15 seconds, you get an additional amount of points!</h1>
+            <div class='col-2 wholeTimer'>
+                <h2 id="timerTitle">Timer</h2>
+                <div id="timer">00:30</div>
+            </div>
+            <div class="col-2"></div>
+        </div>
+
     </section>
 
     <section class="gamebox triviabox container-fluid">
         <div class="row">
-            <div class="col-2"></div>
-            <div class="individQuest col=8"></div>
-            <div class="col-2"></div>
+            <div class="col-1"></div>
+            <div class="individQuest col-10"></div>
+            <div class="col-1"></div>
         </div>
+        <div class="row">
+            <div class="allAnsw col-10">
+                <div class="row answersAC">
+                    <!-- A and C go here-->
+                </div>
+                <div class="row answersBD">
+                    <!-- B and D go here-->
+                </div>
+            </div>
+            <div class="answerbox col-10">
+                <div class="row result"></div>
+                <div class="row">
+                    <div class="answerArea col-6">The Answer is: <span class="answer"></span></div>
+                    <div class="gif col-6"></div>
 
+                </div>
+            </div>
+        </div>
     </section>
 
     <section class="scoring container-fluid">
@@ -48,15 +78,15 @@
                 <h2 class="score">Questions Correct: <span id="correct">0</span></h2>
             </div>
             <div class="col-2">
-                    <h2 class="score">Speed Points: <span id="speedPoints">0</span></h2>
+                <h2 class="score">Speed Points: +<span id="speedPoints">0</span></h2>
             </div>
             <div class="col-2">
-                    <h2 class="score">Total Points: <span id="totalPoints">0</span></h2>
+                <h2 class="score">Total Points: <span id="totalPoints">0</span></h2>
             </div>
             <div class="col-2"></div>
         </div>
     </section>
-    <script type="text/javascript" src="assets/ali.js"></script>
+    <script type="text/javascript" src="./assets/ali.js"></script>
 </body>
 
 </html>
