@@ -46,7 +46,7 @@ var aliQuestions = [
     },
     {
         question: "How does Ali view breastfeeding?",
-        a: "As if you're bring shredded through a tree shredder",
+        a: "As if you're being shredded through a tree shredder",
         b: "It is chronic physical torture", // answer
         c: "Like a beautiful bonding ceremony",
         d: "Like feeling when you hear the man version of 'Somewhere Over the Rainbow'",
@@ -95,13 +95,13 @@ var aliQuestions = [
         gif: "./assets/img/ali8.gif"
     },
     {
-        question: "Who it he real breadwinner in her family?",
-        a: "Ali",
-        b: "Her Husband", // answer
-        c: "Her Daughters",
-        d: "Her Dog",
+        question: "Who is the real breadwinner in Ali's family?",
+        a: "Ali, becuase she earnes more",
+        b: "Her Husband, becuase he won a bread machine", // answer
+        c: "Her Daughters, becuase they eat bread",
+        d: "Her Dog, becuase she is like bread ... soft",
         correctID: "answerB",
-        correct: "Her Husband",
+        correct: "Her Husband, becuase he won a bread machine",
         gif: "./assets/img/ali9.gif"
     },
     {
@@ -128,14 +128,23 @@ var answerCorrectID;
 var intervalID;
 var nextQuesID;
 var time = 30;
-
+var nextTime = 4;
 var speedPoints = 10;
 var points = 0;
 
 var questionsRemain = aliQuestions.length;
 var questionsRight = 0;
+var questionsWrong = 0;
 
 $(document).ready(function () {
+
+    $(".play").on("click", function () {
+        startInterval();
+
+        $(".play").hide();
+        $(".gamebox").show();
+        $(".scoring").show();
+    })
 
 
     // Making the Div for the answers
@@ -218,21 +227,24 @@ $(document).ready(function () {
             time--;
             displayTime = timeConverter(time);
             $("#timer").text(displayTime);
+
+            // what happens if you dont choose anything within the 30 secons
+            if (time === 0) {
+                questionsWrong++;
+                stopInterval();
+
+                removeQuestion();
+                $("#remainingQ").html(aliQuestions.length);
+                $(".result").text("Oops! Looks like you ran out of time. Try again next time!");
+
+                $(".allAnsw").hide();
+                $(".answerbox").show();
+
+                nextQuestionTiming();
+
+            }
         }, 1000)
-        // what happens if you dont choose anything within the 30 secons
-        if (time === 0) {
-            stopInterval()
-
-            removeQuestion();
-            $("#remainingQ").html(aliQuestions.length);
-            $(".result").text("Oops! Looks like you ran out of time. Try again next time!");
-
-            $(".allAnsw").hide();
-            $(".answerbox").show();
-
-        }
     }
-    startInterval()
 
     function stopInterval() {
         clearInterval(intervalID);
@@ -276,6 +288,8 @@ $(document).ready(function () {
             $(".allAnsw").hide();
             $(".answerbox").show();
 
+            nextQuestionTiming();
+
             speedPoints = speedPoints + speedPoints;
         } else if (time <= 15 && guess == answerCorrectID && time > 0) {
             points = points + 10;
@@ -288,15 +302,80 @@ $(document).ready(function () {
 
             $(".allAnsw").hide();
             $(".answerbox").show();
+
+            nextQuestionTiming();
         } else {
+            questionsWrong++;
             $(".result").text("Oops! You picked the wrong one. No more overpriced mangoes for you! Try again next time!");
 
             $(".allAnsw").hide();
             $(".answerbox").show();
+
+            nextQuestionTiming();
         }
-    })
+    });
 
     // Timing (next question)
-    // function 
+    function nextQuestionTiming() {
+        nextQuesID = setInterval(function () {
+            nextTime--
+            if (nextTime === 0) {
+                stopNext();
+                $(".allAnsw").show();
+                $(".answerbox").hide();
+                nextTime = 4;
+                nextQuestion()
+            }
+        }, 1000);
+    }
+
+    function stopNext() {
+        clearInterval(nextQuesID);
+    }
+
+    function nextQuestion() {
+        if (aliQuestions.length === 0) {
+            // ending Game
+            stopInterval();
+            stopNext();
+
+            $(".individQuest").html('Congrats! You got ' + questionsRight + ' questions right, and ' + questionsWrong + ' questions wrong! <br> Oh dang! You scored ' + points + ' points! Look at you, so Harvard-like.')
+            $(".allAnsw").hide();
+            $(".answerbox").hide();
+
+            // restart button
+            var restartButton = $("<button>");
+            restartButton.addClass("restartButton");
+            restartButton.text("Restart Game");
+            restartButton.appendTo(".individQuest")
+
+        } else {
+            // reset for next Q
+            resetGame()
+            pickingQuestion()
+        }
+    }
+
+    // restart game click
+    $(".restartButton").on("click", function () {
+        restartGame();
+    })
+
+    function resetGame() {
+        time = 30;
+        displayTime = timeConverter(time);
+        $("#timer").text(displayTime);
+
+        // re run count down
+        startInterval()
+    }
+
+    function restartGame() {
+        usedQuestions = [];
+        questionsRemain = aliQuestions.length;
+        questionsRight = 0;
+        questionsWrong = 0;
+    }
+
 
 });
