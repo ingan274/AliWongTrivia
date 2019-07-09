@@ -339,7 +339,7 @@ $(document).ready(function () {
             stopInterval();
             stopNext();
 
-            $(".individQuest").html('Congrats! You got ' + questionsRight + ' questions right, and ' + questionsWrong + ' questions wrong! <br> Oh dang! You scored ' + points + ' points! Look at you, so Harvard-like.')
+            $(".individQuest").html('Congrats! You got ' + questionsRight + ' questions right, and ' + questionsWrong + ' questions wrong! <br> Oh dang! You scored ' + points + ' points! Look at you, so Harvard-like. <br>')
             $(".allAnsw").hide();
             $(".answerbox").hide();
 
@@ -349,6 +349,10 @@ $(document).ready(function () {
             restartButton.text("Restart Game");
             restartButton.appendTo(".individQuest")
 
+            $(".restartButton").on("click", function () {
+                restartGame();
+            })
+
         } else {
             // reset for next Q
             resetGame()
@@ -357,9 +361,7 @@ $(document).ready(function () {
     }
 
     // restart game click
-    $(".restartButton").on("click", function () {
-        restartGame();
-    })
+   
 
     function resetGame() {
         time = 30;
@@ -372,9 +374,21 @@ $(document).ready(function () {
 
     function restartGame() {
         usedQuestions = [];
+        aliQuestions = null;
         questionsRemain = aliQuestions.length;
         questionsRight = 0;
+        $("#correct").text(questionsRight);
         questionsWrong = 0;
+
+        resetGame()
+        pickingQuestion()
+
+        $(".gamebox").show();
+        $(".scoring").show();
+        points = 0;
+        var speedPoints = 0
+        $("#totalPoints").text(points)
+        $("#speedPoints").text(speedPoints)
     }
 
 
