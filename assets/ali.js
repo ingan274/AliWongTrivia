@@ -11,8 +11,6 @@
 // - selected WRONG
 // -- show right answer and after 5 seconds move to the next question
 
-
-
 var aliQuestions = [
     {
         question: "When Ali achieves a high enough income bracket, she would like what kinds of mangoes?",
@@ -117,6 +115,7 @@ var aliQuestions = [
 ]
 
 var usedQuestions = [];
+var usedObject = [];
 var currentSet;
 var currentQuestion;
 var answerA;
@@ -140,6 +139,7 @@ $(document).ready(function () {
 
     $(".play").on("click", function () {
         startInterval();
+        pickingQuestion();
 
         $(".play").hide();
         $(".gamebox").show();
@@ -179,11 +179,11 @@ $(document).ready(function () {
 
 
     // Picking Random Question to display
-    pickingQuestion()
     function pickingQuestion() {
         currentSet = aliQuestions[Math.floor(Math.random() * aliQuestions.length)];
         currentQuestion = currentSet.question;
         $(".individQuest").text(currentQuestion);
+
         answerA = currentSet.a;
         answerADiv.text(answerA);
 
@@ -205,7 +205,8 @@ $(document).ready(function () {
         answerCorrectGif.attr("src", answerGifSource)
 
         // pushing used Question into array
-        usedQuestions.push(currentQuestion)
+        usedQuestions.push(currentQuestion);
+        usedObject.push(currentSet)
     }
 
     // Removing question from Array Function
@@ -293,7 +294,8 @@ $(document).ready(function () {
             speedPoints = speedPoints + speedPoints;
         } else if (time <= 15 && guess == answerCorrectID && time > 0) {
             points = points + 10;
-            $("#totalPoints").text(points)
+            $("#totalPoints").text(points);
+            $("#speedPoints").text("0");
 
             questionsRight++;
             $("#correct").text(questionsRight);
@@ -306,6 +308,7 @@ $(document).ready(function () {
             nextQuestionTiming();
         } else {
             questionsWrong++;
+            $("#speedPoints").text("0");
             $(".result").text("Oops! You picked the wrong one. No more overpriced mangoes for you! Try again next time!");
 
             $(".allAnsw").hide();
@@ -356,12 +359,12 @@ $(document).ready(function () {
         } else {
             // reset for next Q
             resetGame()
-            pickingQuestion()
+            pickingQuestion();
         }
     }
 
     // restart game click
-   
+
 
     function resetGame() {
         time = 30;
@@ -373,18 +376,35 @@ $(document).ready(function () {
     }
 
     function restartGame() {
+        // reseting array
+        aliQuestions.push(usedObject);
+        questionsRemain = 10;
+        $("#remainingQ").text(questionsRemain);
+
+        // reseting used questions
         usedQuestions = [];
-        aliQuestions = null;
-        questionsRemain = aliQuestions.length;
+        usedObject = [];
+
+        // reset questions right (on screen) and wrong (internal)
         questionsRight = 0;
         $("#correct").text(questionsRight);
         questionsWrong = 0;
 
-        resetGame()
-        pickingQuestion()
+        // picking Questions
+        pickingQuestion();
 
-        $(".gamebox").show();
-        $(".scoring").show();
+        // reseting timer and new question
+        time = 30;
+        displayTime = timeConverter(time);
+        $("#timer").text(displayTime);
+
+        // re run count down
+        startInterval()
+
+        $(".allAnsw").show();
+        $(".restartButton").hide();
+
+        // reseting points
         points = 0;
         var speedPoints = 0
         $("#totalPoints").text(points)
