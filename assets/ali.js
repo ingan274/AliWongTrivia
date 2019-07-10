@@ -377,7 +377,7 @@ $(document).ready(function () {
 
     function restartGame() {
         // reseting array
-        aliQuestions.push(usedObject);
+        aliQuestions = usedObject;
         questionsRemain = 10;
         $("#remainingQ").text(questionsRemain);
 
@@ -409,6 +409,7 @@ $(document).ready(function () {
         var speedPoints = 0
         $("#totalPoints").text(points)
         $("#speedPoints").text(speedPoints)
+        
     }
 
 
