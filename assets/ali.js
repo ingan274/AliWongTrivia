@@ -406,9 +406,9 @@ $(document).ready(function () {
 
         // reseting points
         points = 0;
-        var speedPoints = 0
+        speedPoints = 10;
         $("#totalPoints").text(points)
-        $("#speedPoints").text(speedPoints)
+        $("#speedPoints").text("0")
         
     }
 
