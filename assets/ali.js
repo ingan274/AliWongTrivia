@@ -4,6 +4,7 @@
 // Set Timer 
 
 // Parameters
+// - when an answer is clicked, running timer will top and show result; the next timer will run to go to the next question
 // - selected Right 
 // -- within 30 seconds but after 15 seconds, add 10 points to points
 // -- within  15 seconds, add 10 points to points and increase/add speed points
@@ -44,9 +45,9 @@ var aliQuestions = [
     },
     {
         question: "How does Ali view breastfeeding?",
-        a: "As if you're being shredded through a tree shredder",
+        a: "Like a beautiful bonding ceremony",
         b: "It is chronic physical torture", // answer
-        c: "Like a beautiful bonding ceremony",
+        c: "As if you're being shredded through a tree shredder",
         d: "Like feeling when you hear the man version of 'Somewhere Over the Rainbow'",
         correctID: "answerB",
         correct: "It is chronic physical torture",
