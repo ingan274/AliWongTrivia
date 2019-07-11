@@ -7,5 +7,6 @@ Think you love Ali Wong as much as me? Let's see how may you get right!
 * If you select the right answer, you move on to the next one
 * If you select wrong, the answer will be revealed and the next answer will show.
 * (Bonus: if you click the questions correctly within 15 seconds, you get additional speed points. Points will start at 10 and double for ever time a questions is answered correctly within 15 seconds. (Ex. First question answered in 15 seconds is 10 points, then the next speedy corect answer will add 20 to equal 30 (!) and ect.))
+* Right or Wrong, you will be presented with a great Ali Wong Gif!
 # About this game
-Week 5 assigment for the June 2019 cohort of UCLA Boot Camp. Built using HTML, CSS, JavaScript/JQuery.
+Week 5 assigment for the June 2019 cohort of UCLA Boot Camp. Built using HTML/Bootsrap, CSS, JavaScript/JQuery.
