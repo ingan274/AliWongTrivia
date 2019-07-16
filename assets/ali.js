@@ -344,7 +344,7 @@ $(document).ready(function () {
             stopInterval();
             stopNext();
 
-            $(".individQuest").html('Congrats! You got ' + questionsRight + ' questions right, and ' + questionsWrong + ' questions wrong! And, you did not answer' + unanswered + " questions. <br> Oh dang! You scored ' + points + ' points! Look at you, so Harvard-like. <br>')
+            $(".individQuest").html('Congrats! You got ' + questionsRight + ' questions right, and ' + questionsWrong + ' questions wrong! And, you did not answer' + unanswered + 'questions. <br> Oh dang! You scored ' + points + ' points! Look at you, so Harvard-like. <br>')
             $(".allAnsw").hide();
             $(".answerbox").hide();
 
