@@ -95,7 +95,7 @@ var aliQuestions = [
     },
     {
         question: "Who is the real breadwinner in Ali's family?",
-        a: "Ali, becuase she earnes more",
+        a: "Ali, because she earnes more",
         b: "Her Husband, becuase he won a bread machine", // answer
         c: "Her Daughters, becuase they eat bread",
         d: "Her Dog, becuase she is like bread ... soft",
@@ -135,6 +135,7 @@ var points = 0;
 var questionsRemain = aliQuestions.length;
 var questionsRight = 0;
 var questionsWrong = 0;
+var unanswered = 0;
 
 $(document).ready(function () {
 
@@ -232,7 +233,7 @@ $(document).ready(function () {
 
             // what happens if you dont choose anything within the 30 secons
             if (time === 0) {
-                questionsWrong++;
+                unanswered++;
                 stopInterval();
 
                 removeQuestion();
@@ -343,7 +344,7 @@ $(document).ready(function () {
             stopInterval();
             stopNext();
 
-            $(".individQuest").html('Congrats! You got ' + questionsRight + ' questions right, and ' + questionsWrong + ' questions wrong! <br> Oh dang! You scored ' + points + ' points! Look at you, so Harvard-like. <br>')
+            $(".individQuest").html('Congrats! You got ' + questionsRight + ' questions right, and ' + questionsWrong + ' questions wrong! And, you did not answer' + unanswered + " questions. <br> Oh dang! You scored ' + points + ' points! Look at you, so Harvard-like. <br>')
             $(".allAnsw").hide();
             $(".answerbox").hide();
 
