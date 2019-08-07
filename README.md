@@ -1,7 +1,7 @@
 # Ali Wong Trivia
 Think you love Ali Wong as much as me? Let's see how may you get right!
 <br>
-https://ingan274.github.io/AliWongTrivia/
+Play Here: https://ingan274.github.io/AliWongTrivia/
 # How to play
 * There are 10 questions regarding Ali Wong Trivia
 * The Trivia is based on her two Netflix Trivia (Baby Cobra and Hard Knock Wife)
