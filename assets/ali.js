@@ -129,7 +129,7 @@ var intervalID;
 var nextQuesID;
 var time = 30;
 var nextTime = 4;
-var speedPoints = 10;
+var speedPoints = 5;
 var points = 0;
 
 var questionsRemain = aliQuestions.length;
@@ -278,7 +278,7 @@ $(document).ready(function () {
         $("#remainingQ").html(aliQuestions.length);
 
         var guess = $(this).attr("id")
-        if (time >= 15 && guess == answerCorrectID) {
+        if (time >= 20 && guess == answerCorrectID) {
             points = points + 10 + speedPoints;
             $("#totalPoints").text(points)
             $("#speedPoints").text(speedPoints)
@@ -294,7 +294,7 @@ $(document).ready(function () {
             nextQuestionTiming();
 
             speedPoints = speedPoints + speedPoints;
-        } else if (time <= 15 && guess == answerCorrectID && time > 0) {
+        } else if (time <= 20 && guess == answerCorrectID && time > 0) {
             points = points + 10;
             $("#totalPoints").text(points);
             $("#speedPoints").text("0");
@@ -344,7 +344,7 @@ $(document).ready(function () {
             stopInterval();
             stopNext();
 
-            $(".individQuest").html('Congrats! You got ' + questionsRight + ' questions right, and ' + questionsWrong + ' questions wrong! Oops, look like you did not answer ' + unanswered + ' question(s). <br> Oh dang! You scored ' + points + ' points! Look at you, so Harvard-like. <br>')
+            $(".individQuest").html('Congrats! You got ' + questionsRight + ' questions right, and ' + questionsWrong + ' questions wrong! <br> Oh dang! You scored ' + points + ' points! Look at you, so Harvard-like. <br>')
             $(".allAnsw").hide();
             $(".answerbox").hide();
 
